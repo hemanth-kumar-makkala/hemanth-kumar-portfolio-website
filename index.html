@@ -1086,14 +1086,26 @@
           <form action="#" class="form" data-form>
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input
+                style="transition: all 0.3s ease;"
+                onfocus="this.style.borderColor='hsl(45, 100%, 72%)'; this.style.boxShadow='0 0 15px rgba(255,218,121,0.2)';"
+                onblur="this.style.borderColor=''; this.style.boxShadow='none';">
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input
+                style="transition: all 0.3s ease;"
+                onfocus="this.style.borderColor='hsl(45, 100%, 72%)'; this.style.boxShadow='0 0 15px rgba(255,218,121,0.2)';"
+                onblur="this.style.borderColor=''; this.style.boxShadow='none';">
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input
+              style="transition: all 0.3s ease;"
+              onfocus="this.style.borderColor='hsl(45, 100%, 72%)'; this.style.boxShadow='0 0 15px rgba(255,218,121,0.2)';"
+              onblur="this.style.borderColor=''; this.style.boxShadow='none';"></textarea>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <button class="form-btn" type="submit" disabled data-form-btn
+              style="transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);"
+              onmouseover="if(!this.disabled){this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(255,218,121,0.3)';}"
+              onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='';">
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
@@ -1104,8 +1116,10 @@
 
           <ul class="contacts-list">
 
-            <li class="contact-item">
-              <div class="icon-box">
+            <li class="contact-item" style="transition: all 0.3s ease; cursor: pointer;"
+              onmouseover="this.style.transform='translateX(10px)'; this.querySelector('.icon-box').style.transform='rotate(360deg)'; this.querySelector('.icon-box').style.background='linear-gradient(135deg, hsl(45, 100%, 72%), hsl(35, 100%, 68%))';"
+              onmouseout="this.style.transform='translateX(0)'; this.querySelector('.icon-box').style.transform='rotate(0deg)'; this.querySelector('.icon-box').style.background='';">
+              <div class="icon-box" style="transition: all 0.5s ease;">
                 <ion-icon name="logo-github"></ion-icon>
               </div>
               <div class="contact-info">
@@ -1115,8 +1129,10 @@
               </div>
             </li>
 
-            <li class="contact-item">
-              <div class="icon-box">
+            <li class="contact-item" style="transition: all 0.3s ease; cursor: pointer;"
+              onmouseover="this.style.transform='translateX(10px)'; this.querySelector('.icon-box').style.transform='rotate(360deg)'; this.querySelector('.icon-box').style.background='linear-gradient(135deg, hsl(45, 100%, 72%), hsl(35, 100%, 68%))';"
+              onmouseout="this.style.transform='translateX(0)'; this.querySelector('.icon-box').style.transform='rotate(0deg)'; this.querySelector('.icon-box').style.background='';">
+              <div class="icon-box" style="transition: all 0.5s ease;">
                 <ion-icon name="logo-instagram"></ion-icon>
               </div>
               <div class="contact-info">
@@ -1126,8 +1142,10 @@
               </div>
             </li>
 
-            <li class="contact-item">
-              <div class="icon-box">
+            <li class="contact-item" style="transition: all 0.3s ease; cursor: pointer;"
+              onmouseover="this.style.transform='translateX(10px)'; this.querySelector('.icon-box').style.transform='rotate(360deg)'; this.querySelector('.icon-box').style.background='linear-gradient(135deg, hsl(45, 100%, 72%), hsl(35, 100%, 68%))';"
+              onmouseout="this.style.transform='translateX(0)'; this.querySelector('.icon-box').style.transform='rotate(0deg)'; this.querySelector('.icon-box').style.background='';">
+              <div class="icon-box" style="transition: all 0.5s ease;">
                 <ion-icon name="logo-linkedin"></ion-icon>
               </div>
               <div class="contact-info">
@@ -1137,8 +1155,10 @@
               </div>
             </li>
 
-            <li class="contact-item">
-              <div class="icon-box">
+            <li class="contact-item" style="transition: all 0.3s ease; cursor: pointer;"
+              onmouseover="this.style.transform='translateX(10px)'; this.querySelector('.icon-box').style.transform='rotate(360deg)'; this.querySelector('.icon-box').style.background='linear-gradient(135deg, hsl(45, 100%, 72%), hsl(35, 100%, 68%))';"
+              onmouseout="this.style.transform='translateX(0)'; this.querySelector('.icon-box').style.transform='rotate(0deg)'; this.querySelector('.icon-box').style.background='';">
+              <div class="icon-box" style="transition: all 0.5s ease;">
                 <ion-icon name="logo-youtube"></ion-icon>
               </div>
               <div class="contact-info">
