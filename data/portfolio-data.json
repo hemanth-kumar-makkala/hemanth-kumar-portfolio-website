@@ -1,0 +1,164 @@
+{
+    "personal": {
+        "fullName": "Hemanth Kumar Makkala",
+        "firstName": "Hemanth",
+        "lastName": "Kumar Makkala",
+        "roles": [
+            "AI Automation Specialist",
+            "Tech Content Creator"
+        ],
+        "profileImage": "./assets/images/pic1.jpeg",
+        "favicon": "./assets/images/icon.png"
+    },
+    "contact": {
+        "email": "makkalakumar55@gmail.com",
+        "phone": "+91 7995443410",
+        "phoneDisplay": "+91 7995443410",
+        "location": "Hyderabad, India",
+        "birthday": "Yet to be added"
+    },
+    "social": {
+        "github": {
+            "username": "hemanth-kumar-makkala",
+            "url": "https://github.com/hemanth-kumar-makkala",
+            "display": "hemanth-kumar-makkala"
+        },
+        "linkedin": {
+            "username": "kumar-makkala",
+            "url": "https://www.linkedin.com/in/kumar-makkala/",
+            "display": "kumar-makkala"
+        },
+        "youtube": {
+            "channelName": "HemanthTechUniverse",
+            "url": "https://www.youtube.com/@HemanthTechUniverse",
+            "display": "HemanthTechUniverse"
+        },
+        "instagram": {
+            "username": "hemanthtechuniverse",
+            "url": "https://www.instagram.com/hemanthtechuniverse/",
+            "display": "hemanthtechuniverse"
+        }
+    },
+    "about": {
+        "intro": "I am an AI Automation Specialist from Hyderabad, India, passionate about building intelligent systems that transform how businesses operate. I specialize in designing and deploying AI chatbots, voice bots, and automation workflows that streamline processes and boost productivity.",
+        "description": "With hands-on experience creating 60+ AI chatbots and 5+ voice bots, I help companies automate customer support, HR operations, and internal workflows. I also manage CRM automations using GoHighLevel, ensuring seamless client interactions. Beyond automation, I create tech content on YouTube and Instagram to help others learn and grow in the AI space."
+    },
+    "services": [
+        {
+            "title": "Prompt Engineering",
+            "description": "Crafting effective prompts for AI models, chatbots, and automation workflows to maximize accuracy and efficiency.",
+            "icon": "./assets/images/icon-design.svg"
+        },
+        {
+            "title": "AI Bots",
+            "description": "Built 60+ AI chatbots and 5+ voice bots for healthcare, HR, billing, and customer support operations.",
+            "icon": "./assets/images/icon-dev.svg"
+        },
+        {
+            "title": "Tech Content",
+            "description": "Creating educational tech content on YouTube and Instagram to help people understand and learn AI and automation.",
+            "icon": "./assets/images/icon-app.svg"
+        },
+        {
+            "title": "Automation",
+            "description": "Building CRM automations, workflows, and integrations using GoHighLevel to streamline business operations.",
+            "icon": "./assets/images/icon-photo.svg"
+        }
+    ],
+    "experience": [
+        {
+            "company": "Staffingly Inc",
+            "role": "AI Automation Specialist",
+            "period": "Oct 2024 – Present",
+            "categories": [
+                {
+                    "name": "🤖 AI Chatbots & Voice Bots",
+                    "achievements": [
+                        "Designed and deployed <b>60+ AI chatbots</b> and <b>5+ voice bots</b> for healthcare, HR, billing, and customer support.",
+                        "Improved response accuracy and operational efficiency."
+                    ]
+                },
+                {
+                    "name": "🔄 CRM Management & Automations",
+                    "achievements": [
+                        "Managed and optimized GoHighLevel CRM for <b>100+ users</b>.",
+                        "Built automations for client onboarding, billing, and communications."
+                    ]
+                },
+                {
+                    "name": "📊 Analytics & Insights",
+                    "achievements": [
+                        "Created dashboards for HR, sales, and operational tracking.",
+                        "Enhanced decision-making with data-driven insights."
+                    ]
+                },
+                {
+                    "name": "🎥 Tech Content Creation",
+                    "achievements": [
+                        "Grew YouTube channel to <b>574+ subscribers</b> with <b>93,000+ views</b>.",
+                        "Produced content on AI, automation, and tech tutorials."
+                    ]
+                }
+            ]
+        },
+        {
+            "company": "Freelance",
+            "role": "Content Creator & AI Enthusiast",
+            "period": "Jan 2023 – Sep 2024",
+            "categories": [
+                {
+                    "name": "📱 Content Creation",
+                    "achievements": [
+                        "Built a YouTube channel focused on <b>AI, automation, and tech tutorials</b>.",
+                        "Reached <b>574+ subscribers</b> and <b>93,000+ total views</b>."
+                    ]
+                },
+                {
+                    "name": "🛠️ Projects & Learning",
+                    "achievements": [
+                        "Experimented with AI models, chatbots, and automation tools.",
+                        "Developed personal projects to showcase AI capabilities."
+                    ]
+                }
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Siddartha Institute of Technology & Sciences",
+            "degree": "Master of Computer Science and Engineering",
+            "period": "2025 — Present"
+        },
+        {
+            "institution": "Keshav Memorial Institute of Technology",
+            "degree": "Bachelor of Computer Science and Engineering",
+            "period": "2022 — 2025"
+        }
+    ],
+    "skills": {
+        "technical": [
+            "AI & Machine Learning",
+            "ChatGPT & LLMs",
+            "Prompt Engineering",
+            "Python",
+            "JavaScript",
+            "CRM Automation (GoHighLevel)",
+            "API Integration",
+            "Data Analytics"
+        ],
+        "tools": [
+            "ChatGPT",
+            "Claude AI",
+            "Google AI Studio",
+            "GoHighLevel",
+            "Make.com",
+            "Zapier",
+            "Python",
+            "VS Code"
+        ]
+    },
+    "meta": {
+        "pageTitle": "Hemanth Kumar Makkala - Personal Portfolio",
+        "lastUpdated": "2026-01-22"
+    }
+}
