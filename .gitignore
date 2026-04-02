@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.env/
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+
+# IDE files (if any)
+.idea/
+.antigravity/
+
+# Generated outputs (if scripts create files)
+output/
+generated/
