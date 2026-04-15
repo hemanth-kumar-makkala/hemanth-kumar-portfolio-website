@@ -924,89 +924,25 @@
 
         <section class="projects">
 
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Systems &amp; Case Studies</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Live Projects</button>
-            </li>
-
+          <ul class="filter-list" id="dynamic-filter-list">
+            <!-- Dynamically populated categories -->
           </ul>
 
           <div class="filter-select-box">
-
             <button class="filter-select" data-select>
-
               <div class="select-value" data-selecct-value>Select category</div>
-
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
               </div>
-
             </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Systems &amp; Case Studies</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Live Projects</button>
-              </li>
-
+            <ul class="select-list" id="dynamic-select-list">
+              <!-- Dynamically populated categories -->
             </ul>
-
           </div>
 
           <ul class="project-list">
 
-            <li class="project-item  active" data-filter-item data-category="systems &amp; case studies">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="Case Study 1" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Sample Case Study</h3>
-
-                <p class="project-category">Systems &amp; Case Studies</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="live projects">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.png" alt="Live Project 1" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Sample Live Project</h3>
-
-                <p class="project-category">Live Projects</p>
-
-              </a>
-            </li>
+            <!-- Projects will be dynamically inserted here via JS -->
 
           </ul>
 
@@ -1014,9 +950,44 @@
 
       </article>
 
+      <article class="project-details" data-page="project-details">
+        <header>
+          <h2 class="h2 article-title">Projects</h2>
+        </header>
 
+        <section class="project-details-content">
+          <h3 id="cs-title" style="color: var(--white-2); font-size: var(--fs-2); line-height: 1.3; margin-top: 10px; margin-bottom: 25px; font-weight: 600;"></h3>
 
+          <img id="cs-main-image" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px; border: 1px solid var(--jet);" src="" alt="Project Image">
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;" id="cs-tags"></div>
+          
+          <div style="background: var(--border-gradient-onyx); padding: 25px; border-radius: 14px; margin-bottom: 35px; position: relative; z-index: 1;">
+            <div style="position: absolute; inset: 1px; background: var(--bg-gradient-jet); border-radius: inherit; z-index: -1;"></div>
+            <strong style="color: var(--white-2); font-size: var(--fs-4);">Key Impact: </strong>
+            <span id="cs-impact" style="color: var(--orange-yellow-crayola); font-size: var(--fs-4); font-weight: 500;"></span>
+          </div>
+          
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">Business Problem</h2>
+          <p id="cs-problem" style="color: var(--light-gray); line-height: 1.7; font-size: var(--fs-5); margin-bottom: 20px;"></p>
 
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">Hypothesis</h2>
+          <p id="cs-hypothesis" style="color: var(--light-gray); line-height: 1.7; font-size: var(--fs-5); margin-bottom: 20px;"></p>
+
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">Architecture</h2>
+          <p id="cs-architecture" style="color: var(--light-gray); line-height: 1.7; font-size: var(--fs-5); margin-bottom: 20px;"></p>
+          <div id="cs-additional-images"></div>
+
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">Implementation Details</h2>
+          <ul id="cs-details" style="margin-bottom: 20px;"></ul>
+
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">AI Safety & Constraints</h2>
+          <ul id="cs-ai-safety" style="margin-bottom: 20px;"></ul>
+
+          <h2 style="color: var(--white-2); font-size: var(--fs-3); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid var(--jet); padding-bottom: 10px;">Outcome & Results</h2>
+          <ul id="cs-outcome" style="margin-bottom: 20px;"></ul>
+        </section>
+      </article>
 
       <!--
         - #CONTENT CREATION
@@ -1310,6 +1281,8 @@
   <script>
     fetch('/api/track', { method: 'POST' }).catch(() => {});
   </script>
+  <!-- Visitor Tracking -->
+
 </body>
 
 </html>

@@ -34,6 +34,11 @@
         // Update about section
         updateAboutSection(data.about, data.services);
 
+        // Update projects section
+        if (data.projects) {
+            updateProjectsSection(data.projects);
+        }
+
         console.log('✅ Portfolio data loaded successfully!');
     }
 
@@ -148,9 +153,185 @@
         <p>${about.description}</p>
       `;
         }
+    }
 
-        // Update services (optional - can be implemented if needed)
-        // This would require more complex HTML generation
+    function updateProjectsSection(projects) {
+        // --- DYNAMIC FILTERS ---
+        const filterList = document.getElementById('dynamic-filter-list');
+        const selectList = document.getElementById('dynamic-select-list');
+        
+        if (filterList && selectList) {
+            filterList.innerHTML = '<li class="filter-item"><button class="active" data-filter-btn>All</button></li>';
+            selectList.innerHTML = '<li class="select-item"><button data-select-item>All</button></li>';
+            
+            const categories = new Set();
+            projects.forEach(p => {
+                if(p.category) categories.add(p.category.toLowerCase());
+            });
+            
+            categories.forEach(category => {
+                const titleCase = category.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                
+                const btnLi = document.createElement('li');
+                btnLi.className = 'filter-item';
+                btnLi.innerHTML = `<button data-filter-btn>${titleCase}</button>`;
+                filterList.appendChild(btnLi);
+                
+                const selLi = document.createElement('li');
+                selLi.className = 'select-item';
+                selLi.innerHTML = `<button data-select-item>${titleCase}</button>`;
+                selectList.appendChild(selLi);
+            });
+            
+            // Bind filter logic internally to ensure reliability
+            const filterBtns = filterList.querySelectorAll('[data-filter-btn]');
+            const selectItems = selectList.querySelectorAll('[data-select-item]');
+            const selectValue = document.querySelector('[data-selecct-value]');
+            
+            const applyFilter = (selectedVal) => {
+                const filterItems = document.querySelectorAll("[data-filter-item]");
+                filterItems.forEach(item => {
+                    item.classList.remove("active");
+                    if (selectedVal === "all" || selectedVal === item.dataset.category) {
+                        item.classList.add("active");
+                    }
+                });
+            };
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const selectedVal = this.innerText.toLowerCase();
+                    if(selectValue) selectValue.innerText = this.innerText;
+                    applyFilter(selectedVal);
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            selectItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const selectedVal = this.innerText.toLowerCase();
+                    if(selectValue) selectValue.innerText = this.innerText;
+                    const select = document.querySelector('[data-select]');
+                    if(select) select.classList.remove('active'); // collapse dropdown
+                    applyFilter(selectedVal);
+                    
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active');
+                        if (b.innerText.toLowerCase() === selectedVal) b.classList.add('active');
+                    });
+                });
+            });
+        }
+
+        // --- PROJECTS RENDERING ---
+        const projectList = document.querySelector('.project-list');
+        if (!projectList) return;
+
+        projectList.innerHTML = '';
+        projects.forEach(project => {
+            const li = document.createElement('li');
+            li.className = 'project-item active';
+            li.dataset.filterItem = '';
+            li.dataset.category = project.category ? project.category.toLowerCase() : 'sys';
+
+            li.innerHTML = `
+            <div style="background: var(--eerie-black-2); border: 1px solid var(--jet); border-radius: 16px; padding: 25px; display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch; margin-bottom: 20px; box-shadow: var(--shadow-1);">
+                
+                <!-- LEFT SIDE: ONLY IMAGE -->
+                <a href="#" onclick="openCaseStudyById('${project.id}'); return false;" style="flex: 1; min-width: 250px; flex-basis: 40%; border-radius: 12px; overflow: hidden; display: block;">
+                    <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                
+                <!-- RIGHT SIDE: CONTENT & BUTTON -->
+                <div style="flex: 1; flex-basis: 50%; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px;">
+                    <h3 style="color: var(--white-2); font-size: var(--fs-3); margin-bottom: 12px; font-weight: 600;">${project.title}</h3>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
+                        ${(project.tags||[]).map(tag => `<span style="font-size: var(--fs-7); padding: 4px 10px; background: hsla(45, 100%, 72%, 0.1); color: var(--orange-yellow-crayola); border-radius: 6px;">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <p style="color: var(--light-gray); font-size: var(--fs-5); margin-bottom: 20px; line-height: 1.6;">
+                        <strong style="color: var(--white-2);">Impact:</strong> ${project.impact}
+                    </p>
+                    
+                    <button onclick="openCaseStudyById('${project.id}')" style="margin-top: auto; padding: 10px 20px; border: 1px solid var(--orange-yellow-crayola); color: var(--orange-yellow-crayola); background: transparent; border-radius: 8px; font-size: var(--fs-6); display: inline-flex; align-items: center; gap: 8px; width: fit-content; transition: 0.3s; cursor: pointer; font-weight: 500;" onmouseover="this.style.background='var(--orange-yellow-crayola)'; this.style.color='var(--smoky-black)';" onmouseout="this.style.background='transparent'; this.style.color='var(--orange-yellow-crayola)';">
+                        View Full Case Study <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
+            `;
+            projectList.appendChild(li);
+        });
+
+        // Direct Case Study Opener
+        window.openCaseStudyById = function(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            window.openCaseStudy(project);
+        };
+        
+        // --- CASE STUDY SPA ROUTING ---
+        window.openCaseStudy = function(project) {
+            document.getElementById('cs-title').textContent = project.title;
+            document.getElementById('cs-impact').textContent = project.impact;
+            document.getElementById('cs-main-image').src = project.image;
+            document.getElementById('cs-problem').textContent = project.problem || "Not specified.";
+            document.getElementById('cs-hypothesis').textContent = project.hypothesis || "Not specified.";
+            document.getElementById('cs-architecture').textContent = project.architecture || "Not specified.";
+
+            const tagsContainer = document.getElementById('cs-tags');
+            tagsContainer.innerHTML = '';
+            (project.tags || []).forEach(tag => {
+                const span = document.createElement('span');
+                span.textContent = tag;
+                span.style.cssText = "background: hsla(45, 100%, 72%, 0.1); color: var(--orange-yellow-crayola); padding: 6px 14px; border-radius: 6px; font-size: var(--fs-7); font-weight: 500;";
+                tagsContainer.appendChild(span);
+            });
+
+            const imagesContainer = document.getElementById('cs-additional-images');
+            imagesContainer.innerHTML = '';
+            if (project.additional_images && project.additional_images.length > 0) {
+                imagesContainer.style.marginTop = '20px';
+                project.additional_images.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    img.style.cssText = "width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--jet); box-shadow: var(--shadow-2);";
+                    imagesContainer.appendChild(img);
+                });
+            }
+
+            const populateList = (id, items) => {
+                const container = document.getElementById(id);
+                container.innerHTML = '';
+                if (!items || items.length === 0) {
+                    container.innerHTML = '<li style="color: var(--light-gray-70)">Not specified.</li>';
+                    return;
+                }
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.style.cssText = "color: var(--light-gray); line-height: 1.7; font-size: var(--fs-5); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;";
+                    li.innerHTML = '<ion-icon name="checkmark-circle-outline" style="color: var(--orange-yellow-crayola); margin-top: 4px; flex-shrink: 0; font-size: 18px;"></ion-icon> <span>' + item + '</span>';
+                    container.appendChild(li);
+                });
+            };
+
+            populateList('cs-details', project.details);
+            populateList('cs-ai-safety', project.ai_safety);
+            populateList('cs-outcome', project.outcome);
+
+            // Hide other pages and remove navlink active states naturally
+            const pages = document.querySelectorAll("[data-page]");
+            const navLinks = document.querySelectorAll("[data-nav-link]");
+            
+            pages.forEach(p => p.classList.remove('active'));
+            navLinks.forEach(n => n.classList.remove('active'));
+            
+            // Instead of highlighting a specific navlink, we just make the details page active.
+            // This way when they click "Projects" in the navbar, script.js handles switching back correctly!
+            document.querySelector('[data-page="project-details"]').classList.add('active');
+            window.scrollTo(0, 0);
+        };
     }
 
 })();

@@ -1865,7 +1865,6 @@ textarea.form-input::-webkit-resizer {
 
   /* portfolio and blog grid */
 
-  .project-list,
   .blog-posts-list {
     grid-template-columns: 1fr 1fr;
   }
@@ -1999,9 +1998,7 @@ textarea.form-input::-webkit-resizer {
    * PORTFOLIO
    */
 
-  .project-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  /* Only blog uses 3 columns now */
 
 
 

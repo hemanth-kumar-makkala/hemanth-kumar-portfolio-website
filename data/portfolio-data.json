@@ -160,5 +160,104 @@
     "meta": {
         "pageTitle": "Hemanth Kumar Makkala - Personal Portfolio",
         "lastUpdated": "2026-01-22"
-    }
+    },
+    "projects": [
+        {
+            "id": "project-001",
+            "title": "Hospital AI Triage System",
+            "category": "systems & case studies",
+            "tags": ["AI Agents", "Healthcare", "Voice AI"],
+            "impact": "Decreased queue wait times by 40%",
+            "image": "./assets/images/project-1.jpg",
+            "problem": "Front-desk hospital staff were inundated with non-critical calls during peak hours, creating a backlog for urgent patient inquiries.",
+            "hypothesis": "Deploying a Voice AI agent that handles triage, standard Q&A, and appointment routing will reduce front-desk call volume.",
+            "architecture": "Twilio / SIP Voice Input -> Make.com -> LLM Agent with Vector DB -> Output to Epic EHR / Human Transfer.",
+            "details": [
+                "Secured workflow using end-to-end encryption for HIPAA compliance.",
+                "Custom built memory buffers to handle multi-turn conversational delays.",
+                "Integrated automated SMS follow-ups post-call using GoHighLevel."
+            ],
+            "ai_safety": [
+                "Strict fallback routing to human agents when patient distress language is detected.",
+                "Guardrails to prevent the AI from offering medical diagnoses."
+            ],
+            "outcome": [
+                "Handled 4,500+ calls per month without human intervention.",
+                "Decreased patient hold times from 8 minutes to 30 seconds."
+            ],
+            "additional_images": ["./assets/images/project-2.png"]
+        },
+        {
+            "id": "project-002",
+            "title": "B2B Sales Outreach Automation",
+            "category": "live projects",
+            "tags": ["GoHighLevel", "Generative AI", "Sales"],
+            "impact": "Boosted meeting book rate by 150%",
+            "image": "./assets/images/project-2.png",
+            "problem": "Sales reps were spending 15 hours a week manually drafting and personalizing cold outreach sequences.",
+            "hypothesis": "Building an autonomous system to scrape prospect data and generate contextualized outreach emails will increase response and meeting booked rates.",
+            "architecture": "Lead Form -> n8n Workflow -> Web Scraper (Apify) -> Claude 3.5 Sonnet -> GoHighLevel Mail Sequence.",
+            "details": [
+                "Built an n8n webhook listener for incoming lead prospects.",
+                "Implemented dynamic prompt templates injecting company news and LinkedIn profile data.",
+                "Created GoHighLevel sub-accounts with A/B testing variations for different industries."
+            ],
+            "ai_safety": [
+                "Human-in-the-loop review queue for any high-value enterprise targets.",
+                "Filtered list for toxic/competitor domains to prevent outreach mistakes."
+            ],
+            "outcome": [
+                "Reps reclaimed 15 hours/week for actual closing conversations.",
+                "Open rates improved to 65% and reply rates jumped to 14%."
+            ]
+        },
+        {
+            "id": "project-003",
+            "title": "Internal Document Q&A Knowledge Base",
+            "category": "systems & case studies",
+            "tags": ["RAG", "Vector DB", "Internal Tools"],
+            "impact": "Reduced employee training time by 3 weeks",
+            "image": "./assets/images/project-3.jpg",
+            "problem": "Onboarding new hires took weeks due to scattered company documentation across Confluence, Google Drive, and Notion.",
+            "hypothesis": "A centralized chatbot utilizing Retrieval-Augmented Generation (RAG) will provide instant, accurate answers and halve onboarding times.",
+            "architecture": "User Chat Interface -> API -> Embedding Model -> Pinecone Vector Database -> LLM Synthesis -> User Answer.",
+            "details": [
+                "Built automated ETL pipelines to sync document stores with vector database nightly.",
+                "Implemented access controls ensuring users could only retrieve data they have permission to access.",
+                "Generated conversational citations linking back to original sources."
+            ],
+            "ai_safety": [
+                "Strict prompt engineering against hallucinations by restricting answers to provided context.",
+                "Logging of failed queries to continuously monitor knowledge gaps."
+            ],
+            "outcome": [
+                "Over 80% of internal HR queries handled instantly by the bot.",
+                "Search time for internal processes reduced to near 0."
+            ]
+        },
+        {
+            "id": "project-004",
+            "title": "E-Commerce Customer Support Bot",
+            "category": "live projects",
+            "tags": ["Chatbot", "Customer Support", "API Integration"],
+            "impact": "Handled 90% of tier 1 tickets automatically",
+            "image": "./assets/images/project-4.png",
+            "problem": "During holidays, support tickets for order status and returns spiked, overwhelming the support team.",
+            "hypothesis": "Deploying an API-connected assistant on Shopify can instantly resolve routine WISMO (Where is my order?) and return requests.",
+            "architecture": "Website Chat Widget -> Dialogflow / Botpress -> Custom Webhooks -> Shopify API & Shippo API.",
+            "details": [
+                "Developed NLP flows for order lookup, return processing, and product recommendations.",
+                "Connected to Shopify REST Admin API to dynamically pull tracking numbers and shipping states.",
+                "Implemented fallback to Zendesk live agents for complex, non-standard cases."
+            ],
+            "ai_safety": [
+                "PII masking applied before any query hits LLMs.",
+                "Hard limits on coupon generation to prevent abuse."
+            ],
+            "outcome": [
+                "Support team successfully weathered a 300% holiday traffic spike with no new hires.",
+                "Maintained a 4.5/5 CSAT rating for automated interactions."
+            ]
+        }
+    ]
 }

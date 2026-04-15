@@ -85,9 +85,8 @@ for (let i = 0; i < selectItems.length; i++) {
 }
 
 // filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
 const filterFunc = function (selectedValue) {
+  const filterItems = document.querySelectorAll("[data-filter-item]");
 
   for (let i = 0; i < filterItems.length; i++) {
 
