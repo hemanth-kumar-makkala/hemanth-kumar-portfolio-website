@@ -164,99 +164,120 @@
     "projects": [
         {
             "id": "project-001",
-            "title": "Hospital AI Triage System",
-            "category": "systems & case studies",
-            "tags": ["AI Agents", "Healthcare", "Voice AI"],
-            "impact": "Decreased queue wait times by 40%",
+            "title": "AI Virtual Medical Assistant System (Voice + CRM Automation)",
+            "category": "case studies",
+            "tags": ["Voice AI", "CRM Automation", "Healthcare", "System Design"],
+            "impact": "Reduced call infrastructure cost by ~30% while handling 50+ calls/day per staff",
             "image": "./assets/images/project-1.jpg",
-            "problem": "Front-desk hospital staff were inundated with non-critical calls during peak hours, creating a backlog for urgent patient inquiries.",
-            "hypothesis": "Deploying a Voice AI agent that handles triage, standard Q&A, and appointment routing will reduce front-desk call volume.",
-            "architecture": "Twilio / SIP Voice Input -> Make.com -> LLM Agent with Vector DB -> Output to Epic EHR / Human Transfer.",
+            "problem": "Healthcare operations depended on external call infrastructure (JustCall), leading to high recurring costs, limited control over call workflows, and manual handling of patient interactions and data capture.",
+            "hypothesis": "A centralized voice automation system integrated with CRM workflows can reduce vendor dependency, automate call handling and routing, and improve operational efficiency.",
+            "architecture": "Inbound Call \n→ GoHighLevel Phone System \n→ Retell AI Voice Engine \n→ Call Routing Logic (GHL Workflows) \n→ CRM Contact Capture \n→ Staff Forwarding / Response",
             "details": [
-                "Secured workflow using end-to-end encryption for HIPAA compliance.",
-                "Custom built memory buffers to handle multi-turn conversational delays.",
-                "Integrated automated SMS follow-ups post-call using GoHighLevel."
+                "Built end-to-end voice automation system inside GoHighLevel",
+                "Integrated Retell AI for voice processing and conversational handling",
+                "Designed multi-client architecture using sub-agencies with isolated data and configurations per client",
+                "Implemented call routing logic, masking, forwarding, recording, and automated CRM data capture for every interaction",
+                "Designed multi-tenant architecture with client-level data isolation",
+                "Removed third-party vendor dependency entirely (JustCall)"
             ],
             "ai_safety": [
-                "Strict fallback routing to human agents when patient distress language is detected.",
-                "Guardrails to prevent the AI from offering medical diagnoses."
+                "Controlled conversational flows instead of open-ended LLM responses",
+                "Defined decision paths to prevent unpredictable outputs",
+                "Logging of failed and edge-case conversations for review"
             ],
             "outcome": [
-                "Handled 4,500+ calls per month without human intervention.",
-                "Decreased patient hold times from 8 minutes to 30 seconds."
-            ],
-            "additional_images": ["./assets/images/project-2.png"]
+                "~30% reduction in call infrastructure cost",
+                "50+ calls/day per staff supported consistently",
+                "Full removal of external vendor dependency"
+            ]
         },
         {
             "id": "project-002",
-            "title": "B2B Sales Outreach Automation",
-            "category": "live projects",
-            "tags": ["GoHighLevel", "Generative AI", "Sales"],
-            "impact": "Boosted meeting book rate by 150%",
+            "title": "AI-Powered Healthcare Document Extraction System",
+            "category": "case studies",
+            "tags": ["LLM", "Document Processing", "Healthcare AI", "Data Pipeline"],
+            "impact": "Reduced manual data entry by 60% and improved operational productivity by 70%",
             "image": "./assets/images/project-2.png",
-            "problem": "Sales reps were spending 15 hours a week manually drafting and personalizing cold outreach sequences.",
-            "hypothesis": "Building an autonomous system to scrape prospect data and generate contextualized outreach emails will increase response and meeting booked rates.",
-            "architecture": "Lead Form -> n8n Workflow -> Web Scraper (Apify) -> Claude 3.5 Sonnet -> GoHighLevel Mail Sequence.",
+            "problem": "Staff manually extracted patient data from scanned pharmacy documents. The process was time-intensive, error-prone, and not scalable for large document volumes.",
+            "hypothesis": "An AI-driven document processing pipeline using vision models and structured prompts can convert unstructured documents into structured outputs at scale, with consistent accuracy.",
+            "architecture": "Document Upload \n→ Page-Level Chunking \n→ Gemini Vision API (OCR + Parsing) \n→ Structured Prompt Processing \n→ LLM Output Formatting \n→ Excel / CSV Export",
             "details": [
-                "Built an n8n webhook listener for incoming lead prospects.",
-                "Implemented dynamic prompt templates injecting company news and LinkedIn profile data.",
-                "Created GoHighLevel sub-accounts with A/B testing variations for different industries."
+                "Designed pipeline to process 1,000+ page datasets per run",
+                "Implemented page-level chunking to prevent context loss across large inputs",
+                "Built structured prompt schema to enforce consistent field extraction across variable document formats",
+                "Extracted patient-level data dynamically, mapping required fields per document type",
+                "Generated structured outputs formatted for direct EMR/EHR workflow use",
+                "Designed reusable pipeline to handle trade-offs between extraction accuracy and processing speed"
             ],
             "ai_safety": [
-                "Human-in-the-loop review queue for any high-value enterprise targets.",
-                "Filtered list for toxic/competitor domains to prevent outreach mistakes."
+                "Structured prompts to reduce hallucination and enforce output schema",
+                "Manual validation checkpoints for extracted fields",
+                "HIPAA-aware API usage and data handling throughout"
             ],
             "outcome": [
-                "Reps reclaimed 15 hours/week for actual closing conversations.",
-                "Open rates improved to 65% and reply rates jumped to 14%."
+                "~95% extraction accuracy",
+                "~90% field coverage across real-world datasets",
+                "60% reduction in manual data entry effort",
+                "70% improvement in operational productivity"
             ]
         },
         {
             "id": "project-003",
-            "title": "Internal Document Q&A Knowledge Base",
-            "category": "systems & case studies",
-            "tags": ["RAG", "Vector DB", "Internal Tools"],
-            "impact": "Reduced employee training time by 3 weeks",
+            "title": "Production Healthcare Chatbot Infrastructure (60+ Bots)",
+            "category": "case studies",
+            "tags": ["Chatbots", "Knowledge Base Systems", "Prompt Engineering", "AI Systems"],
+            "impact": "Achieved ~90% response accuracy across production chatbot systems serving healthcare and enterprise operations",
             "image": "./assets/images/project-3.jpg",
-            "problem": "Onboarding new hires took weeks due to scattered company documentation across Confluence, Google Drive, and Notion.",
-            "hypothesis": "A centralized chatbot utilizing Retrieval-Augmented Generation (RAG) will provide instant, accurate answers and halve onboarding times.",
-            "architecture": "User Chat Interface -> API -> Embedding Model -> Pinecone Vector Database -> LLM Synthesis -> User Answer.",
+            "problem": "Healthcare and internal operations required instant query resolution, reduced staff dependency, and consistent information delivery across multiple departments and client accounts.",
+            "hypothesis": "Knowledge-base-driven chatbot systems with structured datasets, optimized prompts, and continuous evaluation loops can deliver accurate, scalable, and reliable responses across production environments.",
+            "architecture": "User Query \n→ Chatbase Interface \n→ Structured Knowledge Base Dataset \n→ LLM Response Generation \n→ Feedback Loop (Evaluation + Prompt Optimization)",
             "details": [
-                "Built automated ETL pipelines to sync document stores with vector database nightly.",
-                "Implemented access controls ensuring users could only retrieve data they have permission to access.",
-                "Generated conversational citations linking back to original sources."
+                "Designed and deployed 60+ chatbot systems across healthcare, HR, billing, immigration, and internal operations",
+                "Structured datasets and knowledge bases per domain for improved retrieval accuracy",
+                "Built prompt workflows and evaluation loops for continuous accuracy tuning",
+                "Managed live production systems with ongoing optimization cycles",
+                "Executed platform migration from FastBots to Chatbase, reducing operational costs",
+                "Scaled infrastructure, handling constraints between dataset retrieval accuracy and flexible responses"
             ],
             "ai_safety": [
-                "Strict prompt engineering against hallucinations by restricting answers to provided context.",
-                "Logging of failed queries to continuously monitor knowledge gaps."
+                "Responses restricted to dataset context only",
+                "Prompt tuning to reduce hallucinations and out-of-scope answers",
+                "Monitoring and logging of failed and low-confidence responses"
             ],
             "outcome": [
-                "Over 80% of internal HR queries handled instantly by the bot.",
-                "Search time for internal processes reduced to near 0."
+                "~90% response accuracy across production bots",
+                "Scalable multi-domain chatbot infrastructure",
+                "~30% cost reduction after platform migration from FastBots to Chatbase"
             ]
         },
         {
             "id": "project-004",
-            "title": "E-Commerce Customer Support Bot",
-            "category": "live projects",
-            "tags": ["Chatbot", "Customer Support", "API Integration"],
-            "impact": "Handled 90% of tier 1 tickets automatically",
+            "title": "Enterprise LMS and AI Support System for Workforce Training",
+            "category": "case studies",
+            "tags": ["LMS", "Automation", "Internal Systems", "AI Support"],
+            "impact": "Achieved 100% compliance training completion across 450+ employees",
             "image": "./assets/images/project-4.png",
-            "problem": "During holidays, support tickets for order status and returns spiked, overwhelming the support team.",
-            "hypothesis": "Deploying an API-connected assistant on Shopify can instantly resolve routine WISMO (Where is my order?) and return requests.",
-            "architecture": "Website Chat Widget -> Dialogflow / Botpress -> Custom Webhooks -> Shopify API & Shippo API.",
+            "problem": "Training delivery was manual, inconsistent, and dependent on live trainers. Completion tracking was unreliable and the system could not scale across the full organization.",
+            "hypothesis": "A centralized LMS with automated delivery, tracking, and an AI support layer can standardize training, improve completion rates, and eliminate dependency on manual trainer-led sessions.",
+            "architecture": "Employee Login \n→ GoHighLevel Membership Portal \n→ Course Content Delivery \n→ Automated Completion Tracking + Certification \n→ AI Chatbot Support Layer (Post-Training Queries)",
             "details": [
-                "Developed NLP flows for order lookup, return processing, and product recommendations.",
-                "Connected to Shopify REST Admin API to dynamically pull tracking numbers and shipping states.",
-                "Implemented fallback to Zendesk live agents for complex, non-standard cases."
+                "Migrated full LMS from Teachable to GoHighLevel with complete course architecture rebuild",
+                "Designed automated tracking, assessment, and certification workflows",
+                "Deployed mandatory compliance courses (HIPAA, HR Fundamentals, POSH, Legal) and service onboarding programs",
+                "Integrated AI chatbot as always-available support layer for post-course employee queries",
+                "Built custom domain setup and multi-role access configuration",
+                "Ensured consistent training delivery at scale for 450+ employees, replacing manual monitoring"
             ],
             "ai_safety": [
-                "PII masking applied before any query hits LLMs.",
-                "Hard limits on coupon generation to prevent abuse."
+                "Chatbot responses restricted to course-related and domain-specific content",
+                "Monitoring of unresolved or escalated queries",
+                "Controlled knowledge scope to prevent off-topic responses"
             ],
             "outcome": [
-                "Support team successfully weathered a 300% holiday traffic spike with no new hires.",
-                "Maintained a 4.5/5 CSAT rating for automated interactions."
+                "100% completion rate across all mandatory compliance courses",
+                "~80% completion rate across service onboarding programs",
+                "Full elimination of live trainer dependency",
+                "Successful migration of 8-10 courses with zero content loss"
             ]
         }
     ]
