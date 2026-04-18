@@ -146,13 +146,7 @@
         if (!about) return;
 
         // Update about text paragraphs
-        const aboutTextSection = document.querySelector('.about-text');
-        if (aboutTextSection && about.intro && about.description) {
-            aboutTextSection.innerHTML = `
-        <p>${about.intro}</p>
-        <p>${about.description}</p>
-      `;
-        }
+        // (Removed to allow index.html to be the source of truth for the About Me section)
     }
 
     function updateProjectsSection(projects) {
@@ -274,11 +268,37 @@
         // --- CASE STUDY SPA ROUTING ---
         window.openCaseStudy = function(project) {
             document.getElementById('cs-title').textContent = project.title;
-            document.getElementById('cs-impact').textContent = project.impact;
+            document.getElementById('cs-impact').innerHTML = (project.impact || "").replace(/\n/g, '<br>');
             document.getElementById('cs-main-image').src = project.image;
-            document.getElementById('cs-problem').textContent = project.problem || "Not specified.";
-            document.getElementById('cs-hypothesis').textContent = project.hypothesis || "Not specified.";
-            document.getElementById('cs-architecture').textContent = project.architecture || "Not specified.";
+            document.getElementById('cs-problem').innerHTML = (project.problem || "Not specified.").replace(/\n/g, '<br>');
+            document.getElementById('cs-hypothesis').innerHTML = (project.hypothesis || "Not specified.").replace(/\n/g, '<br>');
+            document.getElementById('cs-architecture').innerHTML = (project.architecture || "Not specified.").replace(/\n/g, '<br>');
+
+            const contextHeader = document.getElementById('cs-context-header');
+            const contextContainer = document.getElementById('cs-context');
+            if (contextHeader && contextContainer) {
+                if (project.context) {
+                    contextHeader.style.display = 'block';
+                    contextContainer.style.display = 'block';
+                    contextContainer.innerHTML = project.context.replace(/\n/g, '<br>');
+                } else {
+                    contextHeader.style.display = 'none';
+                    contextContainer.style.display = 'none';
+                    contextContainer.innerHTML = '';
+                }
+            }
+
+            const systemDesignHeader = document.getElementById('cs-system-design-header');
+            const systemDesignContainer = document.getElementById('cs-system-design');
+            if (systemDesignHeader && systemDesignContainer) {
+                if (project.system_design) {
+                    systemDesignHeader.style.display = 'block';
+                    systemDesignContainer.innerHTML = project.system_design.replace(/\n/g, '<br>');
+                } else {
+                    systemDesignHeader.style.display = 'none';
+                    systemDesignContainer.innerHTML = '';
+                }
+            }
 
             const tagsContainer = document.getElementById('cs-tags');
             tagsContainer.innerHTML = '';
@@ -316,9 +336,42 @@
                 });
             };
 
-            populateList('cs-details', project.details);
+            const implHeader = document.getElementById('cs-implementation-header');
+            const csDetails = document.getElementById('cs-details');
+            const implSummary = document.getElementById('cs-implementation-summary');
+
+            if (project.implementation_summary) {
+                if (implHeader) implHeader.textContent = "Implementation Summary";
+                if (csDetails) csDetails.style.display = 'none';
+                if (implSummary) {
+                    implSummary.style.display = 'block';
+                    implSummary.innerHTML = project.implementation_summary.replace(/\n/g, '<br>');
+                }
+            } else {
+                if (implHeader) implHeader.textContent = "Implementation Details";
+                if (csDetails) csDetails.style.display = 'block';
+                if (implSummary) implSummary.style.display = 'none';
+                populateList('cs-details', project.details);
+            }
             populateList('cs-ai-safety', project.ai_safety);
             populateList('cs-outcome', project.outcome);
+
+            const failureHeader = document.getElementById('cs-failure-header');
+            const csFailure = document.getElementById('cs-failure');
+            if (project.failure_handling && project.failure_handling.length > 0) {
+                if (failureHeader) failureHeader.style.display = 'block';
+                if (csFailure) csFailure.style.display = 'block';
+                populateList('cs-failure', project.failure_handling);
+            } else {
+                if (failureHeader) failureHeader.style.display = 'none';
+                if (csFailure) csFailure.style.display = 'none';
+            }
+
+            const closingLine = document.getElementById('cs-closing-line');
+            if (closingLine) {
+                closingLine.textContent = project.closing_line || '';
+                closingLine.style.display = project.closing_line ? 'block' : 'none';
+            }
 
             // Hide other pages and remove navlink active states naturally
             const pages = document.querySelectorAll("[data-page]");
